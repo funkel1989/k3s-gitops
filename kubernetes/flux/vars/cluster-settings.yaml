@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-settings
+  namespace: flux-system
+data:
+  TIMEZONE: "America/Detroit"
+  COREDNS_ADDR: "10.43.0.10"
+  K8S_GATEWAY_ADDR: "192.168.0.50"
+  INGRESS_NGINX_ADDR: "192.168.0.51"
+  KUBE_VIP_ADDR: "192.168.0.52"
+  CLUSTER_CIDR: "10.42.0.0/16"
+  SERVICE_CIDR: "10.43.0.0/16"
+  NODE_CIDR: "192.168.0.0/24"
