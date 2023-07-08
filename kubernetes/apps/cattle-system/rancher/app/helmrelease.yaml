@@ -5,7 +5,7 @@ metadata:
   name: rancher
   namespace: cattle-system
 spec:
-  interval: 5m
+  interval: 30m
   chart:
     spec:
       # renovate: registryUrl=https://releases.rancher.com/server-charts/latest
@@ -15,6 +15,20 @@ spec:
         kind: HelmRepository
         name: rancher
         namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: ingress-nginx
+      namespace: networking
   values:
     hostname: &host "rancher.${SECRET_DOMAIN}"
     bootstrapPassword: ${RANCHER_BOOTSTRAP_PASSWORD}
