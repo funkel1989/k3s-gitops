@@ -19,19 +19,12 @@ spec:
     hostname: &host "rancher.${SECRET_DOMAIN}"
     replicas: 3
     ingress:
-      main:
-        enabled: true
-        ingressClassName: nginx
-        hosts:
-            - host: *host
-              paths:
-                - path: /
-                  pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-        extraAnnotations:
-          external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
-          hajimari.io/enable: "true"
-          hajimari.io/icon: "google-home"
-          hajimari.io/appName: "rancher"
+      enabled: true
+      ingressClassName: nginx
+      tls:
+        source: secret
+      extraAnnotations:
+        external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
+        hajimari.io/enable: "true"
+        hajimari.io/icon: "google-home"
+        hajimari.io/appName: "rancher"

@@ -45,6 +45,7 @@ spec:
           - default
           - monitoring
           - storage
+          - cattle-system
     ingress:
       main:
         enabled: true
