@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-rancher
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/cattle-system/app
+  path: ./kubernetes/apps/cattle-system/rancher/app
   prune: true
   sourceRef:
     kind: GitRepository
