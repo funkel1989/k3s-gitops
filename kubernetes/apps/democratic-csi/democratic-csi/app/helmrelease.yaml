@@ -44,21 +44,20 @@ spec:
           port: 80
           apiKey: "${SECRET_TRUENAS_APIKEY}"
           allowInsecure: true
-          apiVersion: 2
         zfs:
           cli:
             sudoEnabled: true
           datasetProperties:
-            "org.freenas:description": "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+              "org.freenas:description": "{{`{{ parameters.[csi.storage.k8s.io/pvc/name] }}`}}"
           datasetParentName: data/k8s/nfs/data
           detachedSnapshotsDatasetParentName: data/k8s/nfs/backup
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
-          datasetPermissionsUser: 1001
-          datasetPermissionsGroup: 1001
+          datasetPermissionsUser: 0
+          datasetPermissionsGroup: 0
         nfs:
-          shareCommentTemplate: "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
+          shareCommentTemplate: "{{`{{ parameters.[csi.storage.k8s.io/pvc/name] }}`}}"
           shareHost: nas.mycavanaughnetwork.com
           shareAlldirs: false
           shareAllowedHosts: []
@@ -209,19 +208,22 @@ spec:
     storageClasses:
       - name: csi-truenas-nfs
         defaultClass: false
-        reclaimPolicy: Delete # Delete, Retain
+        reclaimPolicy: Delete
         volumeBindingMode: Immediate
         allowVolumeExpansion: true
         parameters:
           fsType: nfs
         mountOptions:
+          - nfsvers=4.2
+          - nconnect=8
+          - hard
+          - intr
           - noatime
-          - nfsvers=4
-          - sec=sys
+          - nodiratime
 
-    volumeSnapshotClasses:
-      - name: csi-truenas-nfs
-        deletionPolicy: Delete # Delete, Retain
+    # volumeSnapshotClasses:
+    #   - name: csi-truenas-nfs
+    #     deletionPolicy: Delete # Delete, Retain
 
     csiProxy:
       resources:
