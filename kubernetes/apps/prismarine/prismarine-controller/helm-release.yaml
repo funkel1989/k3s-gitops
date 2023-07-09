@@ -30,12 +30,12 @@ spec:
     image:
       repository: ghcr.io/kashalls/prismarine-k8s-master # {"$imagepolicy": "flux-system:prismarine-controller:name"}
       tag: main-a13e2cc2-1688515811 # {"$imagepolicy": "flux-system:prismarine-controller:tag"}
-    env:
-      MONGODB_URL:
-        valueFrom:
-          secretKeyRef:
-            name: prismarine-controller-secret
-            key: MONGODB_URL
+    # env:
+    #   MONGODB_URL:
+    #     valueFrom:
+    #       secretKeyRef:
+    #         name: prismarine-controller-secret
+    #         key: MONGODB_URL
     podLabels:
       k8s.kashall.dev/controller: "true"
     service:
