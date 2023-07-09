@@ -46,6 +46,7 @@ spec:
           - monitoring
           - storage
           - cattle-system
+          - games
     ingress:
       main:
         enabled: true
