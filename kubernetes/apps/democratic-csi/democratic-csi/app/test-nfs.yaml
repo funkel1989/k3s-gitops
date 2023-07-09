@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-nfs-1
+  namespace: democratic-csi
+  labels:
+    app: grafana
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "csi-truenas-nfs"
+spec:
+  storageClassName: csi-truenas-nfs
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 50Mi

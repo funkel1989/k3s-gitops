@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: democratic-csi
 resources:
   - ./helmrelease.yaml
-
+  - ./test-nfs.yaml
