@@ -6,7 +6,8 @@ metadata:
   name: minecraft
   namespace: games
 spec:
-  interval: 15m
+  interval: 30m
+  timeout: 15m
   chart:
     spec:
       chart: minecraft
@@ -58,8 +59,8 @@ spec:
     #   io.cilium/lb-ipam-ips: "192.168.3.10"
     minecraftServer:
       eula: true
-      # version: 1.20.1
-      # type: PAPER
+      version: LATEST
+      type: VANILLA
       difficulty: normal
       whitelist: "funkel1989"
       ops: "funkel1989"
