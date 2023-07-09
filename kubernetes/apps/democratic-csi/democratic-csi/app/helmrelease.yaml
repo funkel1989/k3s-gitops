@@ -50,7 +50,7 @@ spec:
           cli:
             sudoEnabled: true
           datasetProperties:
-              "org.freenas:description": "{{`{{ parameters.[csi.storage.k8s.io/pvc/name] }}`}}"
+            "org.freenas:description": "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           datasetParentName: data/k8s/nfs/data
           detachedSnapshotsDatasetParentName: data/k8s/nfs/backup
           datasetEnableQuotas: true
@@ -59,7 +59,7 @@ spec:
           datasetPermissionsUser: 0
           datasetPermissionsGroup: 0
         nfs:
-          shareCommentTemplate: "{{`{{ parameters.[csi.storage.k8s.io/pvc/name] }}`}}"
+          shareCommentTemplate: "flux-{{ parameters.[csi.storage.k8s.io/pvc/namespace] }}-{{ parameters.[csi.storage.k8s.io/pvc/name] }}"
           shareHost: nas.mycavanaughnetwork.com
           shareAlldirs: false
           shareAllowedHosts: []
