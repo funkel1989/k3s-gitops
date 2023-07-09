@@ -58,8 +58,8 @@ spec:
     #   io.cilium/lb-ipam-ips: "192.168.3.10"
     minecraftServer:
       eula: true
-      version: 1.20.1
-      type: PAPER
+      # version: 1.20.1
+      # type: PAPER
       difficulty: normal
       whitelist: "funkel1989"
       ops: "funkel1989"
@@ -98,18 +98,20 @@ spec:
             type: ClusterIP
             port: 8123
           ingress:
-            ingressClassName: public
+            ingressClassName: nginx
             enabled: true
             annotations:
+              external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
               hajimari.io/appName: Minecraft
               hajimari.io/enable: "true"
               hajimari.io/icon: simple-icons:minecraft
               hajimari.io/group: games
             hosts:
-              - name: &host "minecraft.${SECRET_DOMAIN}"
-                path: /
+              - host: &host "minecraft-java.${SECRET_DOMAIN}"
+                paths:
+                  - path: /
+                    pathType: Prefix
             tls:
-              - secretName: *host
                 hosts:
                   - *host
   # valuesFrom:
