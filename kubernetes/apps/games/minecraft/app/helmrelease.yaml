@@ -69,11 +69,11 @@ spec:
       viewDistance: 12
       forceReDownload: true
       memory: ""
-      jvmXXOpts: "-XX:MaxRAMPercentage=75"
-      spigetResources:
-        - 36618
-      #   # Dynmap
-      #   - 274
+      # jvmXXOpts: "-XX:MaxRAMPercentage=75"
+      # spigetResources:
+      #   - 36618
+      # #   # Dynmap
+      # #   - 274
       rcon:
         enabled: false
         serviceType: ClusterIP
@@ -107,12 +107,12 @@ spec:
               hajimari.io/icon: simple-icons:minecraft
               hajimari.io/group: games
             hosts:
-              - host: &host "minecraft-java.${SECRET_DOMAIN}"
+              - host: &host "minecraft.${SECRET_DOMAIN}"
                 paths:
                   - path: /
                     pathType: Prefix
             tls:
-                hosts:
+              - hosts:
                   - *host
   # valuesFrom:
   #   - kind: Secret
