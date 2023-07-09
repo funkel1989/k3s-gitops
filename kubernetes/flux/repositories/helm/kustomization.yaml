@@ -16,6 +16,7 @@ resources:
   - ./kubernetes-dashboard.yaml
   - ./longhorn.yaml
   - ./metrics-server.yaml
+  - ./minecraft-server.yaml
   - ./prometheus-community.yaml
   - ./rancher.yaml
   - ./stakater.yaml
