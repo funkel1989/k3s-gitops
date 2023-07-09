@@ -1,0 +1,43 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: minecraft
+  namespace: prismarine-client
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.9.2
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft
+        namespace: flux-system
+  values:
+    serviceAnnotations:
+      io.cilium/lb-ipam-ips: "10.69.69.241"
+    resources:
+      requests:
+        cpu: 1
+        memory: 4G
+      limits:
+        memory: 4G
+    minecraftServer:
+      eula: "TRUE"
+      version: "1.19.2"
+      ops: Kashall
+      spawnProtection: 16
+      pvp: true
+      memory: 3000M
+      serviceType: LoadBalancer
+      externalTrafficPolicy: Cluster
+      motd: "Kubernetes now comes with Minecraft! On-demand!\nUwU >.<"
+      onlineMode: true
+      rcon:
+        enabled: true
+    persistence:
+      dataDir:
+        enabled: true
+        storageClass: csi-truenas-nfs
+        Size: 20Gi
