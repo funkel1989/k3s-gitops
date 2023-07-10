@@ -57,7 +57,7 @@ spec:
         existingClaim: minecraft-data-vanilla
     minecraftServer:
       eula: true
-      version: LATEST
+      version: 1.20.1
       difficulty: normal
       whitelist: "funkel1989"
       ops: "funkel1989"
