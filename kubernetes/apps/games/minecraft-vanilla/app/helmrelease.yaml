@@ -55,12 +55,9 @@ spec:
       dataDir:
         enabled: true
         existingClaim: minecraft-data-vanilla
-    # serviceAnnotations:
-    #   io.cilium/lb-ipam-ips: "192.168.3.10"
     minecraftServer:
       eula: true
       version: LATEST
-      type: VANILLA
       difficulty: normal
       whitelist: "funkel1989"
       ops: "funkel1989"
@@ -69,17 +66,12 @@ spec:
       worldSaveName: funkland
       viewDistance: 12
       forceReDownload: true
-      memory: ""
-      # jvmXXOpts: "-XX:MaxRAMPercentage=75"
-      # spigetResources:
-      #   - 36618
-      # #   # Dynmap
-      # #   - 274
       rcon:
         enabled: true
         serviceType: ClusterIP
         password: ${MINECRAFT_RCON_PASSWORD}
       serviceType: LoadBalancer
+      servicePort: 8123
       extraPorts:
         - name: metrics
           containerPort: 9225
@@ -116,8 +108,3 @@ spec:
             tls:
               - hosts:
                   - *host
-  # valuesFrom:
-  #   - kind: Secret
-  #     name: *secret
-  #     valuesKey: RCON_PASSWORD
-  #     targetPath: minecraftServer.rcon.password
