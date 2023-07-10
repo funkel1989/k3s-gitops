@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: minecraft-vanilla
+  name: minecraft-paper
   namespace: games
 spec:
   interval: 30m
@@ -54,7 +54,7 @@ spec:
     persistence:
       dataDir:
         enabled: true
-        existingClaim: minecraft-data-vanilla
+        existingClaim: minecraft-data-paper
     minecraftServer:
       eula: true
       version: 1.20.1
@@ -97,12 +97,12 @@ spec:
             enabled: true
             annotations:
               external-dns.alpha.kubernetes.io/target: "ingress.${SECRET_DOMAIN}"
-              hajimari.io/appName: Minecraft-Vanilla
+              hajimari.io/appName: Minecraft-Paper
               hajimari.io/enable: "true"
               hajimari.io/icon: simple-icons:minecraft
               hajimari.io/group: games
             hosts:
-              - host: &host "minecraft-vanilla.${SECRET_DOMAIN}"
+              - host: &host "minecraft-paper.${SECRET_DOMAIN}"
                 paths:
                   - path: /
                     pathType: Prefix

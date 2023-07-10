@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minecraft-data-vanilla
+  name: minecraft-data-paper
   namespace: games
 spec:
   accessModes:
