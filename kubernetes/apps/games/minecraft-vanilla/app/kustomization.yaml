@@ -6,5 +6,5 @@ namespace: games
 resources:
   # - ./externalsecret.yaml
   - ./pvc.yaml
-  - ./helmrelease.yaml
+  # - ./helmrelease.yaml
   # - ./replicationsource.yaml
