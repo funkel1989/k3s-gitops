@@ -58,11 +58,12 @@ spec:
     minecraftServer:
       eula: true
       version: 1.20.1
+      type: PAPER
       difficulty: normal
       whitelist: "funkel1989"
       ops: "funkel1989"
       pvp: true
-      motd: "Kubernetes Hosted Minecraft Server!!! YAY!! Welcome to FunkLand"
+      motd: "Kubernetes Hosted Minecraft Paper Server!!! YAY!! Welcome to FunkLand"
       worldSaveName: funkland
       viewDistance: 12
       forceReDownload: true
