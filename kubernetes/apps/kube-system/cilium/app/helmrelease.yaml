@@ -97,3 +97,4 @@ spec:
     securityContext:
       privileged: true
     tunnel: disabled
+    mtu: 1400
