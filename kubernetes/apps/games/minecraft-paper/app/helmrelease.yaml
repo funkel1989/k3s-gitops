@@ -74,7 +74,7 @@ spec:
         serviceType: ClusterIP
         password: ${MINECRAFT_RCON_PASSWORD}
       serviceType: LoadBalancer
-      servicePort: 8123
+      servicePort: 25565
       extraPorts:
         - name: metrics
           containerPort: 9225
@@ -87,7 +87,7 @@ spec:
           ingress:
             enabled: false
         - name: map
-          containerPort: 8123
+          containerPort: 25565
           protocol: TCP
           service:
             enabled: true
